@@ -207,7 +207,9 @@ def get_jk_trend(jk,print_n=10,thresh=1.0,min_occ=20):
             jk_trend[c][f[0]] = p/other_p
 
     for c in classes:
-        print c  
+        if print_n > 0:
+            print c 
+            
         remlist = []
         for word, ratio in jk_trend[c].iteritems():
             if (ratio > thresh) and (sum([jk[x][word] for x in classes]) >= min_occ):
@@ -404,7 +406,7 @@ def get_n_gram_class_probs(dataset,n=6):
         
     return n_gram_class_probs
         
-def get_n_gram_probs(dataset,n=6):
+def get_n_gram_probs(dataset,n=6,verbose=True):
     from nltk.util import ngrams
     from nltk import trigrams
     from nltk import bigrams
@@ -449,7 +451,8 @@ def get_n_gram_probs(dataset,n=6):
 
         #n_gram_probs = sorted(prob.items(), key=lambda x: len(x[1]), reverse= True)
         class_n_gram_probs[c] = prob
-        print c,len(prob)
+        if verbose == True:
+            print c,len(prob)
     return class_n_gram_probs
 
 
