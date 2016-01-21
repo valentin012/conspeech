@@ -156,7 +156,7 @@ if __name__=='__main__':
         word_freq = nltk.FreqDist(itertools.chain(*tokenized_sentences))
         print "Found %d unique words tokens." % len(word_freq.items())
         
-        vocabulary_size = min(max_vocab_size,len(word_freq.items())
+        vocabulary_size = min(max_vocab_size,len(word_freq.items()))
 
         # Get the most common words and build index_to_word and word_to_index vectors
         vocab = word_freq.most_common(vocabulary_size-1)
@@ -180,7 +180,7 @@ if __name__=='__main__':
                               
         model = RNNTheano(vocabulary_size, hidden_dim=50)
         losses = train_with_sgd(model, X_train, y_train, nepoch=50)
-        save_model_parameters_theano('./data/trained-model-'label'-dim50-t50.npz', model)
+        save_model_parameters_theano('./data/trained-model-'+label+'-dim50-t50.npz', model)
         #load_model_parameters_theano('./data/trained-model-theano.npz', model)
         
                               
