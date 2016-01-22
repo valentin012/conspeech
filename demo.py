@@ -29,7 +29,7 @@ if len(sys.argv) >= 3:
     
 
 # Dataset from http://www.cs.cornell.edu/home/llee/data/convote.html
-PATH_TO_DATA = 'convote_v1.1\data_stage_three'
+PATH_TO_DATA = 'convote_v1.1' + os.path.sep + 'data_stage_three'
 TRAIN_DIR = os.path.join(PATH_TO_DATA, "training_set")
 TEST_DIR = os.path.join(PATH_TO_DATA, "test_set")
 DEV_DIR = os.path.join(PATH_TO_DATA, "development_set")
