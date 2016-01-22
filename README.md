@@ -9,3 +9,8 @@ Run the demo script
 % python demo.py [class]               Example: python demo.py RY
 % python demo.py [class] [lambda]      Example: python demo.py RY 0.25
 ```
+
+##### Requirement (python packages)
+  - SciPy (ubuntu: python-scypi)
+  - scikit-learn (ubuntu: python-sklearn)
+  - nltk (ubuntu: python-nltk)
