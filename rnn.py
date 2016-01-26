@@ -1,4 +1,5 @@
-from __future__ import division
+#!/usr/bin/env python3
+
 import csv
 import itertools
 import operator
@@ -39,7 +40,7 @@ classes = ['DY','DN','RY','RN']
 
 
 def construct_dataset(paths):
-    print "[constructing dataset...]"
+    print("[constructing dataset...]")
 
     class_sentences = dict()
     for c in classes:
@@ -100,7 +101,7 @@ def construct_dataset(paths):
                 #lines = content.split(" . ")
                 lines = re.split(r' \.  | \!  | \?  ',content)
                 lines = [x.strip() for x in lines]
-                lines = filter(lambda a: (a.strip() != ''), lines)
+                lines = [a for a in lines if a.strip() != '']
 
                 if len(lines) <= 1:
                     continue
@@ -115,7 +116,7 @@ def construct_dataset(paths):
 
                 class_sentences[label].extend(lines)
 
-    print "[dataset constructed.]"
+    print("[dataset constructed.]")
     return class_sentences   
 
 
@@ -144,19 +145,19 @@ if __name__=='__main__':
     nltk.download("book")
     
     dataset = construct_dataset([TRAIN_DIR,TEST_DIR,DEV_DIR])
-    print "Sentences",sum([len(x) for x in dataset.values()])
+    print("Sentences", sum([len(x) for x in dataset.values()]))
     
-    for label, sentences in dataset.iteritems():
-        print 'Processing',label,'...'
+    for label, sentences in dataset.items():
+        print('Processing', label, '...')
 
         # Tokenize the sentences into words
         tokenized_sentences = [nltk.word_tokenize(sent) for sent in sentences]
 
         # Count the word frequencies
         word_freq = nltk.FreqDist(itertools.chain(*tokenized_sentences))
-        print "Found %d unique words tokens." % len(word_freq.items())
+        print("Found %d unique words tokens." % len(word_freq.items()))
         
-        vocabulary_size = min(max_vocab_size,len(word_freq.items()))
+        vocabulary_size = min(max_vocab_size, len(word_freq.items()))
 
         # Get the most common words and build index_to_word and word_to_index vectors
         vocab = word_freq.most_common(vocabulary_size-1)
@@ -164,8 +165,8 @@ if __name__=='__main__':
         index_to_word.append(unknown_token)
         word_to_index = dict([(w,i) for i,w in enumerate(index_to_word)])
 
-        print "Using vocabulary size %d." % vocabulary_size
-        print "The least frequent word in our vocabulary is '%s' and appeared %d times." % (vocab[-1][0], vocab[-1][1])
+        print("Using vocabulary size %d." % vocabulary_size)
+        print("The least frequent word in our vocabulary is '%s' and appeared %d times." % (vocab[-1][0], vocab[-1][1]))
 
         # Replace all words not in our vocabulary with the unknown token
         for i, sent in enumerate(tokenized_sentences):
