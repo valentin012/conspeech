@@ -2,21 +2,24 @@
 
 Link to original paper: http://arxiv.org/abs/1601.03313
 
-#Usage
+##Usage
 
-Prep an environment
+1. Prepare your environment.
 	
 ### Linux-based systems
+_VirtualEnvs are highly recommended._
+
     $ mkvirtualenv conspeech
     $ workon conspeech
     $ pip install -r requirements.txt
    
 ### Windows systems
-    % (Contributor not familiar with dependency management on Windows)
+    % (contributor not familiar with dependency management on Windows -- do virtualenvs work on Win?)
     
 
-### Run the demo script
+### Running the demo script
    
     python demo.py
     python demo.py [class]               Example: python demo.py RY
     python demo.py [class] [lambda]      Example: python demo.py RY 0.25
+
